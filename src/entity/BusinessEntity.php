@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BusinessRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -41,6 +42,11 @@ class BusinessEntity
      * @ORM\OneToMany(targetEntity="OrdersEntity", mappedBy="business_id_business") 
      */
     private Collection $orders_id_business;
+    
+    public function __construct()
+    {
+        $this->orders_id_business = new ArrayCollection();
+    }
 
     /**
      * Get the value of id_business

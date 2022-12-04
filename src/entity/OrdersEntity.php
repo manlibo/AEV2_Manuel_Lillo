@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\OrdersRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(RepositoryClass=OrdersRepository::class)
@@ -40,6 +42,24 @@ class OrdersEntity
      * @ORM\JoinColumn(name="id_empresa", referencedColumnName="id")
      */
     private BusinessEntity $business_id_business;
+
+    //########ASOCIACIÓN CON id_pedido de la tabla facturas
+    /**
+     * @ORM\OneToMany(targetEntity="InvoicesEntity", mappedBy="orders_id_orders") 
+     */
+    private Collection $invoices_id_orders;
+
+    //########ASOCIACIÓN CON id_pedido de la tabla lineaspedidos
+    /**
+     * @ORM\OneToMany(targetEntity="OrderDetailEntity", mappedBy="order_id_order") 
+     */
+    private Collection $detail_id_order;
+
+    public function __construct()
+    {
+        $this->detail_id_order = new ArrayCollection();
+        $this->invoices_id_order = new ArrayCollection();
+    }
 
     /**
      * Get the value of id_orders
@@ -157,6 +177,54 @@ class OrdersEntity
     public function setBusinessIdBusiness(BusinessEntity $business_id_business)
     {
         $this->business_id_business = $business_id_business;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of invoices_id_orders
+     *
+     * @return  Collection
+     */
+    public function getInvoicesIdOrders()
+    {
+        return $this->invoices_id_orders;
+    }
+
+    /**
+     * Set the value of invoices_id_orders
+     *
+     * @param  Collection  $invoices_id_orders
+     *
+     * @return  self
+     */
+    public function setInvoicesIdOrders(Collection $invoices_id_orders)
+    {
+        $this->invoices_id_orders = $invoices_id_orders;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of detail_id_order
+     *
+     * @return  Collection
+     */
+    public function getDetailIdOrder()
+    {
+        return $this->detail_id_order;
+    }
+
+    /**
+     * Set the value of detail_id_order
+     *
+     * @param  Collection  $detail_id_order
+     *
+     * @return  self
+     */
+    public function setDetailIdOrder(Collection $detail_id_order)
+    {
+        $this->detail_id_order = $detail_id_order;
 
         return $this;
     }
