@@ -1,0 +1,51 @@
+{
+    "/":{
+        "controller":"MainController",
+        "action":"main"
+    },
+    "/Products":{
+        "controller":"ProductsController",
+        "action":"listProducts"
+    },
+    "/wharehouses":{
+        "controller":"WharehousesController",
+        "action":"listWarehouses"
+    },
+    "/business":{
+        "controller":"BusinessController",
+        "action":"listBusiness"
+    },
+    "/update":{
+        "controller":"BusinessController",
+        "action":"updateBusiness"
+    },
+    
+    "/insert":{
+        "controller":"BusinessController",
+        "action":"insertBusiness"
+    },
+    "/delete":{
+        "controller": "BusinessController",
+        "action":"deleteBusiness"
+    },
+
+    "/orders":{
+        "controller":"OrdersController",
+        "action":"listOrders"
+    },
+
+    "/orderDetail":{
+        "controller":"OrderDetailController",
+        "action":"listDetail"
+    },
+    "/invoices":{
+        "controller":"InvoicesController",
+        "action":"listInvoices"
+    },
+    "/invoice":{
+        "controller":"InvoicesController",
+        "action":"showInvoice"
+    }
+    
+
+}
