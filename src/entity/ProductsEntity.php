@@ -13,10 +13,10 @@ use Doctrine\Common\Collections\Collection;
  */
 class ProductsEntity
 {
-    /** 
+    /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(name="codigo)
+     * @ORM\Column(name="codigo", type="integer")
     */
     private int $code_product;
 
@@ -27,7 +27,7 @@ class ProductsEntity
 
     //########ASOCIACIÓN CON nombre de la tabla almacenes
     /**
-     * @ORM\ManyToOne(targetEntity="WarehousesEntity" inversedBy="products_name_warehouses")
+     * @ORM\ManyToOne(targetEntity="WarehousesEntity", inversedBy="products_name_warehouses")
      * @ORM\JoinColumn(name="almacen", referencedColumn="nombre")
      */
     private WarehousesEntity $warehouses_name_warehouses;
@@ -49,13 +49,13 @@ class ProductsEntity
 
     //########ASOCIACIÓN CON codigo_producto de la tabla lineaspedidos
     /**
-     * @ORM\OneToMany(targetEntity="OrderDetailEntity", mappedBy="products_code_product") 
+     * @ORM\OneToMany(targetEntity="OrderDetailEntity", mappedBy="products_code_product")
      */
     private Collection $detail_code_product;
 
     //########ASOCIACIÓN CON producto de la tabla stock
     /**
-     * @ORM\OneToMany(targetEntity="StockEntity", mappedBy="products_code_product_stock") 
+     * @ORM\OneToMany(targetEntity="StockEntity", mappedBy="products_code_product_stock")
      */
     private Collection $stock_code_product;
     
@@ -259,7 +259,3 @@ class ProductsEntity
         return $this;
     }
 }
-
-
-
-
