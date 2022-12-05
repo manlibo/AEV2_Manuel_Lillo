@@ -3,6 +3,9 @@
 namespace App\Controllers;
 
 use App\Core\AbstractController;
+use App\Core\EntityManager;
+
+
 
 class MainController extends AbstractController
 {
@@ -16,7 +19,10 @@ class MainController extends AbstractController
     {
 
         $this->render("main.html.twig", [
-            "title" => "Crear un MVC",
+            "title_head" => "MVC con Doctrine",
+            "home" => "Corporation",
+            "home_title" => "Welcome to our Corporation",
+            "sidebar_title" => "Our sections"
         ]);
     }
 }

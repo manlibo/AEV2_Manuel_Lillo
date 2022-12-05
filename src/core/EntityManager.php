@@ -50,16 +50,6 @@ class EntityManager
         return $this->entityManager;
     }
 
-    /**
-     * Set the value of entityManager
-     *
-     * @return  self
-     */ 
-    public function setEntityManager($entityManager)
-    {
-        $this->entityManager = $entityManager;
-
-        return $this;
-    } 
+   
 }
 

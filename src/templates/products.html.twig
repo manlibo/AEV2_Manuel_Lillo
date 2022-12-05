@@ -1,0 +1,29 @@
+{% extends "main.html.twig" %}
+
+{% block container %}
+
+    {% if results is null %}
+        0 results
+        <a href="/">Home</a>
+    {% else %}
+        <table>
+            <th>
+                <td>Description</td>
+                <td>Warehouse</td>
+                <td>Unit</td>
+                <td>Rating</td>
+                <td>Price/Unit</td>
+            </th>
+            {% for row in results %}
+                <tr>
+                    <td>{{row.getDescription()}}</td>
+                    <td>{{row.getWarehouses_name_warehouses()}}</td>
+                    <td>{{row.getUnit()}}</td>
+                    <td>{{row.getRating()}}</td>
+                    <td>{{row.getUnitPrize()}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock container%}

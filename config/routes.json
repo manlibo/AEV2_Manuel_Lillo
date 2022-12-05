@@ -3,12 +3,12 @@
         "controller":"MainController",
         "action":"main"
     },
-    "/Products":{
+    "/products":{
         "controller":"ProductsController",
         "action":"listProducts"
     },
-    "/wharehouses":{
-        "controller":"WharehousesController",
+    "/warehouses":{
+        "controller":"WarehousesController",
         "action":"listWarehouses"
     },
     "/business":{

@@ -28,7 +28,7 @@ class ProductsEntity
     //########ASOCIACIÓN CON nombre de la tabla almacenes
     /**
      * @ORM\ManyToOne(targetEntity="WarehousesEntity", inversedBy="products_name_warehouses")
-     * @ORM\JoinColumn(name="almacen", referencedColumn="nombre")
+     * @ORM\JoinColumn(name="almacen", referencedColumnName="nombre")
      */
     private WarehousesEntity $warehouses_name_warehouses;
 
@@ -38,9 +38,9 @@ class ProductsEntity
     private string $unit;
 
     /**
-     * @ORM\Column(name="clasificación", type="string", length="1")
+     * @ORM\Column(name="clasificacion", type="string", length="1")
      */
-    private string $rating;
+    private ?string $rating;
 
     /**
      * @ORM\Column(name"preciounidad", type"decimal", scale="6", precision="2")
