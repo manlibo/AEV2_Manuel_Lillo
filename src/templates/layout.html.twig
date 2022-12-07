@@ -18,9 +18,7 @@
             </div>
         </div>
     {% endblock header%}
-    {% block page %}
     
-    {% endblock page%}
     {% block sidebar %}
         <div id="sidebar">
 		    <h2>{{sidebar_title}}</h2>
@@ -36,4 +34,9 @@
 	    <div style="clear: both;">&nbsp;</div>
     </div>
     {% endblock sidebar%}
+
+    {% block page %}
+    
+    {% endblock page%}
+    
 {% endblock body%}

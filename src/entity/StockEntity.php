@@ -10,56 +10,61 @@ use DateTime;
  * @ORM\Entity(RepositoryClass=StockRepository::class)
  * @ORM\Table(name="stock")
  */
-class StockEntity
-{
+class StockEntity {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(name="id_move")
-     */
-    private $id_mov;
+    * @ORM\Id
+    * @ORM\GeneratedValue
+    * @ORM\Column(name="id_mov", type="integer")
+    */
+    private int $id_mov;
 
     /**
      * @ORM\Column(name="fecha", type="date")
      */
-    private $date_stock;
-
-    //########## ASOCIACION CON CODIGO DE LA TABLA PRODUCTOS
-    /**
-     * @ORM\ManyToOne(targetEntity="ProductsEntity", inversedBy="stock_code_product")
-     * @ORM\JoinColumn(name="producto", referencedColumn="codigo")
-     */
-    private ProductsEntity $products_code_product_stock;
+    private DateTime $fecha;
 
     /**
-     * @ORM\Column(name="cantidad", type="decimal", scale="6", precision="2")
-     */
-    private int $amount;
+    * @ORM\Column(name="producto", type="integer")
+    */
+    private int $producto;
 
     /**
-     * @ORM\Column(name="stock", type="decimal", scale="6", precision="2")
+     * @ORM\Column(name="cantidad", type="decimal", precision=6, scale=2)
      */
-    private int $stock;
+    private float $cantidad;
 
     /**
-     * @ORM\Column(name="precio", type="decimal", scale="6", precision="2")
+     * @ORM\Column(name="stock", type="decimal", precision=6, scale=2)
      */
-    private int $prize;
+    private float $stock;
 
     /**
-     *@ORM\Column(name="unidad", type="string", length="3")
+     * @ORM\Column(name="precio", type="decimal", precision=6, scale=2)
      */
-    private string $unit;
+    private float $precio;
 
-    //########### ASOCIACIÓN CON NOMBRE D ELA TABLA ALMACENES
     /**
-     * @ORM\ManyToOne(targetEntity="WarehousesEntity", iversedBy="stock_name_warehouses")
-     * @ORM\JoinToColumn(name="almacen", referencedColumn="nombre")
+     * @ORM\Column(name="unidad", type="string", length=3)
      */
-    private WarehousesEntity $warehouses_name_warehouses_from_stock;
+    private string $unidad;
+
+    /**
+     * @ORM\Column(name="almacen", type="string", length=5)
+     */
+    private string $almacen;
+
+    /**
+     * Many stock has One productos
+     * @ORM\ManyToOne(targetEntity="ProductsEntity", inversedBy="stock")
+     * @ORM\JoinColumn(name="producto", referencedColumnName="codigo")
+     */
+    private ProductsEntity $prodStock;
+    
 
     /**
      * Get the value of id_mov
+     *
+     * @return  int
      */
     public function getIdMov()
     {
@@ -69,9 +74,11 @@ class StockEntity
     /**
      * Set the value of id_mov
      *
+     * @param  int  $id_mov
+     *
      * @return  self
      */
-    public function setIdMov($id_mov)
+    public function setIdMov(int $id_mov)
     {
         $this->id_mov = $id_mov;
 
@@ -79,69 +86,73 @@ class StockEntity
     }
 
     /**
-     * Get the value of date_stock
+     * Get the value of fecha
+     *
+     * @return  DateTime
      */
-    public function getDateStock()
+    public function getFecha()
     {
-        return $this->date_stock;
+        return $this->fecha;
     }
 
     /**
-     * Set the value of date_stock
+     * Set the value of fecha
+     *
+     * @param  DateTime  $fecha
      *
      * @return  self
      */
-    public function setDateStock($date_stock)
+    public function setFecha(DateTime $fecha)
     {
-        $this->date_stock = $date_stock;
+        $this->fecha = $fecha;
 
         return $this;
     }
 
     /**
-     * Get the value of products_code_product_stock
-     *
-     * @return  ProductsEntity
-     */
-    public function getProductsCodeProductStock()
-    {
-        return $this->products_code_product_stock;
-    }
-
-    /**
-     * Set the value of products_code_product_stock
-     *
-     * @param  ProductsEntity  $products_code_product_stock
-     *
-     * @return  self
-     */
-    public function setProductsCodeProductStock(ProductsEntity $products_code_product_stock)
-    {
-        $this->products_code_product_stock = $products_code_product_stock;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of amount
+     * Get the value of producto
      *
      * @return  int
      */
-    public function getAmount()
+    public function getProducto()
     {
-        return $this->amount;
+        return $this->producto;
     }
 
     /**
-     * Set the value of amount
+     * Set the value of producto
      *
-     * @param  int  $amount
+     * @param  int  $producto
      *
      * @return  self
      */
-    public function setAmount(int $amount)
+    public function setProducto(int $producto)
     {
-        $this->amount = $amount;
+        $this->producto = $producto;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cantidad
+     *
+     * @return  float
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    /**
+     * Set the value of cantidad
+     *
+     * @param  float  $cantidad
+     *
+     * @return  self
+     */
+    public function setCantidad(float $cantidad)
+    {
+        $this->cantidad = $cantidad;
 
         return $this;
     }
@@ -149,7 +160,7 @@ class StockEntity
     /**
      * Get the value of stock
      *
-     * @return  int
+     * @return  float
      */
     public function getStock()
     {
@@ -159,11 +170,11 @@ class StockEntity
     /**
      * Set the value of stock
      *
-     * @param  int  $stock
+     * @param  float  $stock
      *
      * @return  self
      */
-    public function setStock(int $stock)
+    public function setStock(float $stock)
     {
         $this->stock = $stock;
 
@@ -171,73 +182,97 @@ class StockEntity
     }
 
     /**
-     * Get the value of prize
+     * Get the value of precio
      *
-     * @return  int
+     * @return  float
      */
-    public function getPrize()
+    public function getPrecio()
     {
-        return $this->prize;
+        return $this->precio;
     }
 
     /**
-     * Set the value of prize
+     * Set the value of precio
      *
-     * @param  int  $prize
+     * @param  float  $precio
      *
      * @return  self
      */
-    public function setPrize(int $prize)
+    public function setPrecio(float $precio)
     {
-        $this->prize = $prize;
+        $this->precio = $precio;
 
         return $this;
     }
 
     /**
-     * Get *@ORM\Column(name="unidad", type="string", length="3")
+     * Get the value of unidad
      *
      * @return  string
      */
-    public function getUnit()
+    public function getUnidad()
     {
-        return $this->unit;
+        return $this->unidad;
     }
 
     /**
-     * Set *@ORM\Column(name="unidad", type="string", length="3")
+     * Set the value of unidad
      *
-     * @param  string  $unit  *@ORM\Column(name="unidad", type="string", length="3")
+     * @param  string  $unidad
      *
      * @return  self
      */
-    public function setUnit(string $unit)
+    public function setUnidad(string $unidad)
     {
-        $this->unit = $unit;
+        $this->unidad = $unidad;
 
         return $this;
     }
 
     /**
-     * Get the value of warehouses_name_warehouses_from_stock
+     * Get the value of almacen
      *
-     * @return  WarehousesEntity
+     * @return  string
      */
-    public function getWarehousesNameWarehousesFromStock()
+    public function getAlmacen()
     {
-        return $this->warehouses_name_warehouses_from_stock;
+        return $this->almacen;
     }
 
     /**
-     * Set the value of warehouses_name_warehouses_from_stock
+     * Set the value of almacen
      *
-     * @param  WarehousesEntity  $warehouses_name_warehouses_from_stock
+     * @param  string  $almacen
      *
      * @return  self
      */
-    public function setWarehousesNameWarehousesFromStock(WarehousesEntity $warehouses_name_warehouses_from_stock)
+    public function setAlmacen(string $almacen)
     {
-        $this->warehouses_name_warehouses_from_stock = $warehouses_name_warehouses_from_stock;
+        $this->almacen = $almacen;
+
+        return $this;
+    }
+
+    /**
+     * Get many stock has One productos
+     *
+     * @return  ProductsEntity
+     */
+    public function getProdStock()
+    {
+        return $this->prodStock;
+    }
+
+    /**
+     * Set many stock has One productos
+     *
+     * @param  ProductsEntity  $prodStock  Many stock has One productos
+     *
+     * @return  self
+     */
+    public function setProdStock(ProductsEntity $prodStock)
+    {
+        $this->prodStock = $prodStock;
 
         return $this;
     }

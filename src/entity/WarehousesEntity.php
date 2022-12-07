@@ -8,149 +8,134 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * @ORM\Entity(RepositoryClass=WarehousesRepository::class)
+ * @ORM\Entity(repositoryClass=WarehousesRepository::class)
  * @ORM\Table(name="almacenes")
  */
-class WarehousesEntity
-{
-    /**
-     * @ORM\Column(name="nombre", type="string", length="5")
-     */
-    private $name_warehouse;
+
+ class WarehousesEntity{
 
     /**
-     * @ORM\Column(name="localizacion", type="string", length="255")
-     */
-    private $location;
+    * @ORM\Id
+    * @ORM\Column(name="nombre", type="string", length=5)
+    */
+    private string $nombre;
 
     /**
-     * @ORM\Column(name="descripcion", type="string", length="255")
+     * @ORM\Column(name="localizacion", type="string", length=255, nullable="true")
      */
-    private $description;
+    private ?string $localizacion;
 
-    //############## ASOCIACIÓN CON ALMACEN DE LA TABLA PRODUCTOS
     /**
-     * @ORM\OneToMany(targetEntity="ProductsEntity", mappedBy="warehouses_name_warehouses")
+     * @ORM\Column(name="descripcion", type="string", length=255, nullable="true")
      */
-    private Collection $products_name_warehouses;
+    private ?string $descripcion;
 
-    //############## ASOCIACIÓN CON ALMACEN DE LA TABLA STOCK
     /**
-     * @ORM\OneToMany(targetEntity="StockEntity", mappedBy="warehouses_name_warehouses_from_stock)
+     * @ORM\OneToMany(targetEntity="ProductsEntity", mappedBy="almaProducto")
      */
-    private Collection $stock_name_warehouses;
+    private Collection $prodAlmacen;
 
     public function __construct()
     {
-        $this->products_name_warehouses = new ArrayCollection();
-        $this->stock_name_warehouses = new ArrayCollection();
+        $this->prodAlmacen = new ArrayCollection();
+
     }
 
     /**
-     * Get the value of name_warehouse
+     * Get the value of nombre
+     *
+     * @return  string
      */
-    public function getNameWarehouse()
+    public function getNombre()
     {
-        return $this->name_warehouse;
+        return $this->nombre;
     }
 
     /**
-     * Set the value of name_warehouse
+     * Set the value of nombre
+     *
+     * @param  string  $nombre
      *
      * @return  self
      */
-    public function setNameWarehouse($name_warehouse)
+    public function setNombre(string $nombre)
     {
-        $this->name_warehouse = $name_warehouse;
+        $this->nombre = $nombre;
 
         return $this;
     }
 
     /**
-     * Get the value of location
+     * Get the value of localizacion
+     *
+     * @return  ?string
      */
-    public function getLocation()
+    public function getLocalizacion()
     {
-        return $this->location;
+        return $this->localizacion;
     }
 
     /**
-     * Set the value of location
+     * Set the value of localizacion
+     *
+     * @param  ?string  $localizacion
      *
      * @return  self
      */
-    public function setLocation($location)
+    public function setLocalizacion(?string $localizacion)
     {
-        $this->location = $location;
+        $this->localizacion = $localizacion;
 
         return $this;
     }
 
     /**
-     * Get the value of description
+     * Get the value of descripcion
+     *
+     * @return  ?string
      */
-    public function getDescription()
+    public function getDescripcion()
     {
-        return $this->description;
+        return $this->descripcion;
     }
 
     /**
-     * Set the value of description
+     * Set the value of descripcion
+     *
+     * @param  ?string  $descripcion
      *
      * @return  self
      */
-    public function setDescription($description)
+    public function setDescripcion(?string $descripcion)
     {
-        $this->description = $description;
+        $this->descripcion = $descripcion;
 
         return $this;
     }
 
+    
+
     /**
-     * Get the value of products_name_warehouses
+     * Get one almacen has Many productos
      *
      * @return  Collection
      */
-    public function getProductsNameWarehouses()
+    public function getProdAlmacen()
     {
-        return $this->products_name_warehouses;
+        return $this->prodAlmacen;
     }
 
     /**
-     * Set the value of products_name_warehouses
+     * Set one almacen has Many productos
      *
-     * @param  Collection  $products_name_warehouses
+     * @param  Collection  $prodAlmacen  One almacen has Many productos
      *
      * @return  self
      */
-    public function setProductsNameWarehouses(Collection $products_name_warehouses)
+    public function setProdAlmacen(Collection $prodAlmacen)
     {
-        $this->products_name_warehouses = $products_name_warehouses;
+        $this->prodAlmacen = $prodAlmacen;
 
         return $this;
     }
-
-    /**
-     * Get the value of stock_name_warehouses
-     *
-     * @return  Collection
-     */
-    public function getStockNameWarehouses()
-    {
-        return $this->stock_name_warehouses;
-    }
-
-    /**
-     * Set the value of stock_name_warehouses
-     *
-     * @param  Collection  $stock_name_warehouses
-     *
-     * @return  self
-     */
-    public function setStockNameWarehouses(Collection $stock_name_warehouses)
-    {
-        $this->stock_name_warehouses = $stock_name_warehouses;
-
-        return $this;
-    }
-}
+ }

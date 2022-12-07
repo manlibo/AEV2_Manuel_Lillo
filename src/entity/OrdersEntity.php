@@ -12,219 +12,249 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity(RepositoryClass=OrdersRepository::class)
  * @ORM\Table(name="pedidos")
  */
-class OrdersEntity
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(name="id", type="integer")
-     */
-    private int $id_orders;
+class OrdersEntity {
+
+     /**
+    * @ORM\Id
+    * @ORM\GeneratedValue
+    * @ORM\Column(name="id", type="integer")
+    */
+    private int $id;
 
     /**
-    * @ORM\Column(name="tipo", type="string", length="1")
+    * @ORM\Column(name="tipo", type="string", length=1)
     */
-    private string $type_orders;
+    private string $tipo;
 
     /**
     * @ORM\Column(name="fecha", type="date")
     */
-    private DateTime $date_orders;
+    private DateTime $fecha;
 
     /**
-    * @ORM\Column(name="observacion", type="string", length="255")
+    * @ORM\Column(name="observacion", type="string", length=255, nullable="true")
     */
-    private ?string $obs_order;
+    private ?string $observacion;
 
-    //########ASOCIACIÓN CON id de la tabla empresas
     /**
-     * @ORM\ManyToOne(targetEntity="BusinessEntity" inversedBy="orders_id_business")
+    * @ORM\Column(name="id_empresa", type="integer")
+    */
+    private int $id_empresa;
+
+    /**
+     * Many pedidos has One empresa
+     * @ORM\ManyToOne(targetEntity="BusinessEntity", inversedBy="pedido")
      * @ORM\JoinColumn(name="id_empresa", referencedColumnName="id")
      */
-    private BusinessEntity $business_id_business;
+    private BusinessEntity $empresa;
 
-    //########ASOCIACIÓN CON id_pedido de la tabla facturas
     /**
-     * @ORM\OneToMany(targetEntity="InvoicesEntity", mappedBy="orders_id_orders") 
+     * One pedios has Many facturas
+     * @ORM\OneToMany(targetEntity="InvoicesEntity", mappedBy="pedido")
      */
-    private Collection $invoices_id_orders;
+    private Collection $facturas;
 
-    //########ASOCIACIÓN CON id_pedido de la tabla lineaspedidos
     /**
-     * @ORM\OneToMany(targetEntity="OrderDetailEntity", mappedBy="order_id_order") 
+     * One pedios has Many facturas
+     * @ORM\OneToMany(targetEntity="OrderDetailEntity", mappedBy="pedidos")
      */
-    private Collection $detail_id_order;
+    private Collection $lineasPedidos;
 
     public function __construct()
     {
-        $this->detail_id_order = new ArrayCollection();
-        $this->invoices_id_order = new ArrayCollection();
+        $this->facturas = new ArrayCollection();
+        $this->lineasPedidos = new ArrayCollection();
+
     }
 
     /**
-     * Get the value of id_orders
+     * Get the value of id
      *
      * @return  int
      */
-    public function getIdOrders()
+    public function getId()
     {
-        return $this->id_orders;
+        return $this->id;
     }
 
     /**
-     * Set the value of id_orders
+     * Set the value of id
      *
-     * @param  int  $id_orders
+     * @param  int  $id
      *
      * @return  self
      */
-    public function setIdOrders(int $id_orders)
+    public function setId(int $id)
     {
-        $this->id_orders = $id_orders;
+        $this->id = $id;
 
         return $this;
     }
 
     /**
-     * Get the value of type_orders
+     * Get the value of tipo
      *
      * @return  string
      */
-    public function getTypeOrders()
+    public function getTipo()
     {
-        return $this->type_orders;
+        return $this->tipo;
     }
 
     /**
-     * Set the value of type_orders
+     * Set the value of tipo
      *
-     * @param  string  $type_orders
+     * @param  string  $tipo
      *
      * @return  self
      */
-    public function setTypeOrders(string $type_orders)
+    public function setTipo(string $tipo)
     {
-        $this->type_orders = $type_orders;
+        $this->tipo = $tipo;
 
         return $this;
     }
 
     /**
-     * Get the value of date_orders
+     * Get the value of fecha
      *
      * @return  DateTime
      */
-    public function getDateOrders()
+    public function getFecha()
     {
-        return $this->date_orders;
+        return $this->fecha;
     }
 
     /**
-     * Set the value of date_orders
+     * Set the value of fecha
      *
-     * @param  DateTime  $date_orders
+     * @param  DateTime  $fecha
      *
      * @return  self
      */
-    public function setDateOrders(DateTime $date_orders)
+    public function setFecha(DateTime $fecha)
     {
-        $this->date_orders = $date_orders;
+        $this->fecha = $fecha;
 
         return $this;
     }
 
     /**
-     * Get the value of obs_order
+     * Get the value of observacion
      *
      * @return  ?string
      */
-    public function getObsOrder()
+    public function getObservacion()
     {
-        return $this->obs_order;
+        return $this->observacion;
     }
 
     /**
-     * Set the value of obs_order
+     * Set the value of observacion
      *
-     * @param  ?string  $obs_order
+     * @param  ?string  $observacion
      *
      * @return  self
      */
-    public function setObsOrder(?string $obs_order)
+    public function setObservacion(?string $observacion)
     {
-        $this->obs_order = $obs_order;
+        $this->observacion = $observacion;
 
         return $this;
     }
 
     /**
-     * Get the value of business_id_business
+     * Get the value of id_empresa
+     *
+     * @return  int
+     */
+    public function getIdEmpresa()
+    {
+        return $this->id_empresa;
+    }
+
+    /**
+     * Set the value of id_empresa
+     *
+     * @param  int  $id_empresa
+     *
+     * @return  self
+     */
+    public function setIdEmpresa(int $id_empresa)
+    {
+        $this->id_empresa = $id_empresa;
+
+        return $this;
+    }
+
+    /**
+     * Get many pedidos has One empresa
      *
      * @return  BusinessEntity
      */
-    public function getBusinessIdBusiness()
+    public function getEmpresa()
     {
-        return $this->business_id_business;
+        return $this->empresa;
     }
 
     /**
-     * Set the value of business_id_business
+     * Set many pedidos has One empresa
      *
-     * @param  BusinessEntity  $business_id_business
+     * @param  BusinessEntity  $empresa  Many pedidos has One empresa
      *
      * @return  self
      */
-    public function setBusinessIdBusiness(BusinessEntity $business_id_business)
+    public function setEmpresa(BusinessEntity $empresa)
     {
-        $this->business_id_business = $business_id_business;
+        $this->empresa = $empresa;
 
         return $this;
     }
 
     /**
-     * Get the value of invoices_id_orders
+     * Get one pedios has Many facturas
      *
      * @return  Collection
      */
-    public function getInvoicesIdOrders()
+    public function getFacturas()
     {
-        return $this->invoices_id_orders;
+        return $this->facturas;
     }
 
     /**
-     * Set the value of invoices_id_orders
+     * Set one pedios has Many facturas
      *
-     * @param  Collection  $invoices_id_orders
+     * @param  Collection  $facturas  One pedios has Many facturas
      *
      * @return  self
      */
-    public function setInvoicesIdOrders(Collection $invoices_id_orders)
+    public function setFacturas(Collection $facturas)
     {
-        $this->invoices_id_orders = $invoices_id_orders;
+        $this->facturas = $facturas;
 
         return $this;
     }
 
     /**
-     * Get the value of detail_id_order
+     * Get one pedios has Many facturas
      *
      * @return  Collection
      */
-    public function getDetailIdOrder()
+    public function getLineasPedidos()
     {
-        return $this->detail_id_order;
+        return $this->lineasPedidos;
     }
 
     /**
-     * Set the value of detail_id_order
+     * Set one pedios has Many facturas
      *
-     * @param  Collection  $detail_id_order
+     * @param  Collection  $lineasPedidos  One pedios has Many facturas
      *
      * @return  self
      */
-    public function setDetailIdOrder(Collection $detail_id_order)
+    public function setLineasPedidos(Collection $lineasPedidos)
     {
-        $this->detail_id_order = $detail_id_order;
+        $this->lineasPedidos = $lineasPedidos;
 
         return $this;
     }

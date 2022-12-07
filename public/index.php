@@ -8,3 +8,5 @@ use App\Core\Dispatcher;
 $request = new Request();
 $routeCollection = new RouteCollection();
 $dispatcher = new Dispatcher($routeCollection, $request);
+
+

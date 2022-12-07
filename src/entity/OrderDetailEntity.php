@@ -9,155 +9,214 @@ use App\Repository\OrderDetailRepository;
  * @ORM\Entity(RepositoryClass=OrderDetailRepository::class)
  * @ORM\Table(name="lineaspedidos")
  */
-class OrderDetailEntity
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Colum(name="id_linea", type="integer")
-     */
-    private int $id_detail;
+class OrderDetailEntity{
 
-    //############ ASOCIACIÓN ID_PEDIDO CON ID DE TABLA PEDIDOS >>>order_id_order<<<
     /**
-     *@ORM\ManyToOne(targetEntity="OrdersEntity" inversedBy="detail_id_order")
-     *@ORM\JoinColumn(name="id_pedido", referenceColumn="id")
-     */
-    private int $order_id_order;
+    * @ORM\Id
+    * @ORM\GeneratedValue
+    * @ORM\Column(name="id_linea", type="integer")
+    */
+    private int $id_linea;
 
-    //############ ASOCIACIÓN CODIGO_PRODUCTO CON CODIGO DE LA TABLA PRODUCTOS
-    /** @ORM\ManyToOne(targetEntity="ProductsEntity" inversedBy="detail_code_product")
+    /**
+    * @ORM\Column(name="id_pedido", type="integer")
+    */
+    private int $id_pedido;
+
+    /**
+    * @ORM\Column(name="codigo_producto", type="integer")
+    */
+    private int $codigo_producto;
+
+    /**
+     * @ORM\Column(name="cantidad", type="decimal", precision=6, scale=2)
+     */
+    private float $cantidad;
+
+    /**
+     * @ORM\Column(name="precio", type="decimal", precision=6, scale=2)
+     */
+    private float $precio;
+
+    /**
+     * Many Detail has One pedido
+     * @ORM\ManyToOne(targetEntity="OrdersEntity", inversedBy="lineasPedidos")
+     * @ORM\JoinColumn(name="id_pedido", referencedColumnName="id")
+     */
+    private OrdersEntity $pedidos;
+
+    /**
+     * Many Detail has One productos
+     * @ORM\ManyToOne(targetEntity="ProductsEntity", inversedBy="detalles")
      * @ORM\JoinColumn(name="codigo_producto", referencedColumnName="codigo")
      */
-    private ProductsEntity $products_code_product;
+    private ProductsEntity $productos;
 
     /**
-     * @ORM\Column(name="cantidad", type="decimal", scale="6", precision="2")
-     */
-    private int $amount;
-
-    /**
-     * @ORM\Column(name="precio", type="decimal", scale="6", precision="2")
-     */
-    private int $prize;
-
-
-    /**
-     * Get the value of id_detail
+     * Get the value of id_linea
      *
      * @return  int
      */
-    public function getIdDetail()
+    public function getIdLinea()
     {
-        return $this->id_detail;
+        return $this->id_linea;
     }
 
     /**
-     * Set the value of id_detail
+     * Set the value of id_linea
      *
-     * @param  int  $id_detail
+     * @param  int  $id_linea
      *
      * @return  self
      */
-    public function setIdDetail(int $id_detail)
+    public function setIdLinea(int $id_linea)
     {
-        $this->id_detail = $id_detail;
+        $this->id_linea = $id_linea;
 
         return $this;
     }
 
     /**
-     * Get *@ORM\JoinColumn(name="id_pedido", referenceColumn="id")
+     * Get the value of id_pedido
      *
      * @return  int
      */
-    public function getOrderIdOrder()
+    public function getIdPedido()
     {
-        return $this->order_id_order;
+        return $this->id_pedido;
     }
 
     /**
-     * Set *@ORM\JoinColumn(name="id_pedido", referenceColumn="id")
+     * Set the value of id_pedido
      *
-     * @param  int  $order_id_order  *@ORM\JoinColumn(name="id_pedido", referenceColumn="id")
+     * @param  int  $id_pedido
      *
      * @return  self
      */
-    public function setOrderIdOrder(int $order_id_order)
+    public function setIdPedido(int $id_pedido)
     {
-        $this->order_id_order = $order_id_order;
+        $this->id_pedido = $id_pedido;
 
         return $this;
     }
 
     /**
-     * Get the value of products_code_product
+     * Get the value of codigo_producto
      *
      * @return  int
      */
-    public function getProductsCodeProduct()
+    public function getCodigoProducto()
     {
-        return $this->products_code_product;
+        return $this->codigo_producto;
     }
 
     /**
-     * Set the value of products_code_product
+     * Set the value of codigo_producto
      *
-     * @param  int  $products_code_product
+     * @param  int  $codigo_producto
      *
      * @return  self
      */
-    public function setProductsCodeProduct(int $products_code_product)
+    public function setCodigoProducto(int $codigo_producto)
     {
-        $this->products_code_product = $products_code_product;
+        $this->codigo_producto = $codigo_producto;
 
         return $this;
     }
 
     /**
-     * Get the value of amount
+     * Get the value of cantidad
      *
-     * @return  int
+     * @return  float
      */
-    public function getAmount()
+    public function getCantidad()
     {
-        return $this->amount;
+        return $this->cantidad;
     }
 
     /**
-     * Set the value of amount
+     * Set the value of cantidad
      *
-     * @param  int  $amount
+     * @param  float  $cantidad
      *
      * @return  self
      */
-    public function setAmount(int $amount)
+    public function setCantidad(float $cantidad)
     {
-        $this->amount = $amount;
+        $this->cantidad = $cantidad;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of precio
+     *
+     * @return  float
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    /**
+     * Set the value of precio
+     *
+     * @param  float  $precio
+     *
+     * @return  self
+     */
+    public function setPrecio(float $precio)
+    {
+        $this->precio = $precio;
 
         return $this;
     }
 
     /**
-     * Get the value of prize
+     * Get many Detail has One pedido
      *
-     * @return  int
+     * @return  OrdersEntity
      */
-    public function getPrize()
+    public function getPedidos()
     {
-        return $this->prize;
+        return $this->pedidos;
     }
 
     /**
-     * Set the value of prize
+     * Set many Detail has One pedido
      *
-     * @param  int  $prize
+     * @param  OrdersEntity  $pedidos  Many Detail has One pedido
      *
      * @return  self
      */
-    public function setPrize(int $prize)
+    public function setPedidos(OrdersEntity $pedidos)
     {
-        $this->prize = $prize;
+        $this->pedidos = $pedidos;
+
+        return $this;
+    }
+
+    /**
+     * Get many Detail has One productos
+     *
+     * @return  ProductsEntity
+     */
+    public function getProductos()
+    {
+        return $this->productos;
+    }
+
+    /**
+     * Set many Detail has One productos
+     *
+     * @param  ProductsEntity  $productos  Many Detail has One productos
+     *
+     * @return  self
+     */
+    public function setProductos(ProductsEntity $productos)
+    {
+        $this->productos = $productos;
 
         return $this;
     }

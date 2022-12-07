@@ -11,87 +11,87 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity(RepositoryClass=BusinessRepository::class)
  * @ORM\Table(name="empresas")
  */
-class BusinessEntity
-{
+class BusinessEntity {
 
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(name="id", type="integer")
-     */
-    private int $id_business;
+    * @ORM\Id
+    * @ORM\GeneratedValue
+    * @ORM\Column(name="id", type="integer")
+    */
+    private int $id;
 
     /**
-     * @ORM\Column(name="nombre", type="string", length="255")
-     */
-    private string $name_business;
+    * @ORM\Column(name="nombre", type="string", length=255)
+    */
+    private string $nombre;
 
     /**
-    * @ORM\Column(name="CIF", type="string", length="9")
+    * @ORM\Column(name="CIF", type="string", length=9)
     */
     private string $CIF;
 
     /**
-    * @ORM\Column(name="tipo", type="string", length="1")
+    * @ORM\Column(name="tipo", type="string", length=1)
     */
-    private string $type_business;
+    private string $tipo;
 
-
-    //########ASOCIACIÓN CON id_empresa de la tabla pedidos
     /**
-     * @ORM\OneToMany(targetEntity="OrdersEntity", mappedBy="business_id_business") 
+     * One empresa has Many pedidos
+     * @ORM\OneToMany(targetEntity="OrdersEntity", mappedBy="empresa")
      */
-    private Collection $orders_id_business;
-    
+    private Collection $pedido;
+
     public function __construct()
     {
-        $this->orders_id_business = new ArrayCollection();
+        $this->pedido = new ArrayCollection();
     }
 
+
+
     /**
-     * Get the value of id_business
+     * Get the value of id
      *
      * @return  int
      */
-    public function getIdBusiness()
+    public function getId()
     {
-        return $this->id_business;
+        return $this->id;
     }
 
     /**
-     * Set the value of id_business
+     * Set the value of id
      *
-     * @param  int  $id_business
+     * @param  int  $id
      *
      * @return  self
      */
-    public function setIdBusiness(int $id_business)
+    public function setId(int $id)
     {
-        $this->id_business = $id_business;
+        $this->id = $id;
 
         return $this;
     }
 
     /**
-     * Get the value of name_business
+     * Get the value of nombre
      *
      * @return  string
      */
-    public function getNameBusiness()
+    public function getNombre()
     {
-        return $this->name_business;
+        return $this->nombre;
     }
 
     /**
-     * Set the value of name_business
+     * Set the value of nombre
      *
-     * @param  string  $name_business
+     * @param  string  $nombre
      *
      * @return  self
      */
-    public function setNameBusiness(string $name_business)
+    public function setNombre(string $nombre)
     {
-        $this->name_business = $name_business;
+        $this->nombre = $nombre;
 
         return $this;
     }
@@ -120,27 +120,50 @@ class BusinessEntity
         return $this;
     }
 
-
     /**
-     * Get the value of type_business
+     * Get the value of tipo
      *
      * @return  string
      */
-    public function getTypeBusiness()
+    public function getTipo()
     {
-        return $this->type_business;
+        return $this->tipo;
     }
 
     /**
-     * Set the value of type_business
+     * Set the value of tipo
      *
-     * @param  string  $type_business
+     * @param  string  $tipo
      *
      * @return  self
      */
-    public function setTypeBusiness(string $type_business)
+    public function setTipo(string $tipo)
     {
-        $this->type_business = $type_business;
+        $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * Get one empresa has Many pedidos
+     *
+     * @return  Collection
+     */
+    public function getPedido()
+    {
+        return $this->pedido;
+    }
+
+    /**
+     * Set one empresa has Many pedidos
+     *
+     * @param  Collection  $pedido  One empresa has Many pedidos
+     *
+     * @return  self
+     */
+    public function setPedido(Collection $pedido)
+    {
+        $this->pedido = $pedido;
 
         return $this;
     }
