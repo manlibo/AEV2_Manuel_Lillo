@@ -7,7 +7,7 @@ use App\Repository\InvoicesRepository;
 use DateTime;
 
 /**
- * @ORM\Entity(RepositoryClass=InvoicesRepository::class)
+ * @ORM\Entity(repositoryClass=InvoicesRepository::class)
  * @ORM\Table(name="facturas") 
  */ 
 class InvoicesEntity{

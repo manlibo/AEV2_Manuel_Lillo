@@ -49,12 +49,12 @@ class ProductsEntity
     /**
      * @ORM\OneToMany(targetEntity="OrderDetailEntity", mappedBy="productos")
      */
-    private Collection $detalles;
+    //private Collection $detalles;
 
     /**
      * @ORM\OneToMany(targetEntity="StockEntity", mappedBy="prodStock")
      */
-    //private Collection $stock;
+    private Collection $stock;
 
     public function __construct()
     {

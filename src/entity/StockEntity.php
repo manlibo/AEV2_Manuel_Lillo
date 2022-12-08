@@ -1,5 +1,5 @@
 <?php
-
+// src/entity/StockEntity.php
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,7 +7,7 @@ use App\Repository\StockRepository;
 use DateTime;
 
 /**
- * @ORM\Entity(RepositoryClass=StockRepository::class)
+ * @ORM\Entity(repositoryClass=StockRepository::class)
  * @ORM\Table(name="stock")
  */
 class StockEntity {

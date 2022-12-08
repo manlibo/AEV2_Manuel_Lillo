@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\OrderDetailRepository;
 
 /**
- * @ORM\Entity(RepositoryClass=OrderDetailRepository::class)
+ * @ORM\Entity(repositoryClass=OrderDetailRepository::class)
  * @ORM\Table(name="lineaspedidos")
  */
 class OrderDetailEntity{

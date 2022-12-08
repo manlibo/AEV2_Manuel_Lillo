@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * @ORM\Entity(RepositoryClass=OrdersRepository::class)
+ * @ORM\Entity(repositoryClass=OrdersRepository::class)
  * @ORM\Table(name="pedidos")
  */
 class OrdersEntity {

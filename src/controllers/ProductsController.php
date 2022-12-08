@@ -13,8 +13,8 @@ class ProductsController extends AbstractController
     public function listProducts()
     {
         $entityManager = (new EntityManager())->getEntityManager();
-        $produtsRepository = $entityManager->getRepository(ProductsEntity::class);
-        $products = $produtsRepository->findAll();
+        $productsRepository = $entityManager->getRepository(ProductsEntity::class);
+        $products = $productsRepository->findAll();
         $this->render(
             "products.html.twig",
             ['title_head'=>'PRODUCTS',
