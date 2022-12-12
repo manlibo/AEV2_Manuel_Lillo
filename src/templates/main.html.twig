@@ -1,22 +1,21 @@
-
 {% extends "layout.html.twig" %}
-    {% block page %}
-        <div id="page">
-                <div id="content">
-                    <h1>{{home_title}}</h1>
-                    
-                    <p>Click on the different sections of the page to find all the information you need.</p>
-                    <ol>
-                        <li><a href="/products">Products</a></li>
-                        <li><a href="/warehouses">Warehouses</a></li>
-                        <li><a href="/business">Business</a></li>
-                        <li><a href="/orders">Orders</a></li>
-                        <li><a href="/invoices">invoices</a></li>
-                    </ol>
-                </div>
 
-                {% block container %}
-                
-                
-                {% endblock container%}
-    {% endblock page%}
+{% block inicio %}
+    <div class="divHome">
+        <a class="botonInicio" href="/products">Products</a>
+    </div>
+    <div class="divHome">
+        <a class="botonInicio" href="/warehouses">Warehouses</a>
+    </div>
+    <div class="divHome">
+        <a class="botonInicio" href="/business">Business</a>
+    </div>
+    <div class="divHome">
+        <a class="botonInicio" href="/orders">Orders</a>
+    </div>
+    <div class="divHome">
+        <a class="botonInicio" href="/invoices">Invoices</a>
+    </div>
+
+
+{% endblock inicio%}

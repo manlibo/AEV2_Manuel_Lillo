@@ -18,7 +18,7 @@ class ProductsController extends AbstractController
         $this->render(
             "products.html.twig",
             ['title_head'=>'PRODUCTS',
-            'results'=>$products]
+            'products'=>$products]
         );
     }
 }

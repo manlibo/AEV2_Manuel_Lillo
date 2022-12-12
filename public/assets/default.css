@@ -225,3 +225,111 @@ a:visited {
 #links {
 	float: right;
 }
+
+table {
+	width: 80%;
+	margin: 10%;
+    background-color: #3B3B3B ;
+	/* border-collapse: collapse; */ /* Esta prodiedad hace que los bordes de cada celda se unifiquen y no se vea diferencia de líneas ni espacios entre las celdas */
+	
+}
+
+tr { /* Este selector hace que actúe la propiedad solamente sobre ls lineas pares o impares, para ello utilizaremos even o odd */
+	background-color: #3B3B3B ;
+	
+}
+.negrita{
+	font-weight: bold;
+	color: white
+}
+td {
+    border: 2px solid #ddd;
+    padding: 12px
+}
+table th {
+    background-color: #3B3B3B ;
+    color: honeydew;
+    text-align: left;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.divHome {
+	margin: 10%;
+	padding: 1%;
+	height: 10%;
+	  width: 10%;
+ 	  float: left; 
+    
+}
+
+.enlaceHome {
+	color: #3B3B3B ;
+    background-color: #3B3B3B ;
+    border: solid 5px;
+    border-color: #ddd;
+    padding: 15px;
+    margin-top: 45px;
+	border-radius: 6px;
+	text-decoration: none;
+}
+
+.enlaceHome:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #94B0C8;
+}
+
+.botonInicio {
+	color: #3B3B3B ;
+    background-color: #3B3B3B ;
+    border: solid 8px;
+    border-color: rgb(0, 0, 0);
+    padding: 15px;
+    margin-top: 45px;
+	border-radius: 6px;
+	text-decoration: none;
+}
+
+.botonInicio:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #4097e4;
+
+}
+
+.tituloListas{
+	
+	color: #ffffff ;
+    background-color: #3B3B3B ;
+    border: solid 5px;
+    border-color: #ddd;
+    padding: 2%;
+    margin: 2%;
+	border-radius: 6px;
+	text-align:center
+}
+
+.divBusiness {
+	margin: 5%;
+	padding: 1%;  
+}
+
+.enlaceBusiness {
+	color: #3B3B3B ;
+    background-color: #3B3B3B ;
+    border: solid 5px;
+    border-color: #ddd;
+    padding: 15px;
+    margin-top: 45px;
+	border-radius: 6px;
+	text-decoration: none;
+}
+
+.enlaceBusiness:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #94B0C8;
+}

@@ -1,0 +1,38 @@
+
+{% extends "layout.html.twig" %}
+
+{% block sidebar %}
+        <div id="sidebar">
+		    <h2>{{sidebar_title}}</h2>
+		    <ul>
+			    <li><a href="/products">Products</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/warehouses">Warehouses</a></li>
+                <li><a href="/business">Business</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li><a href="/invoices">invoices</a></li>
+            </ul>
+	    </div>
+	    <div style="clear: both;">&nbsp;</div>
+    </div>
+{% endblock sidebar%}
+    {% block page %}
+        <div id="page">
+                <div id="content">
+                    <h1>{{home_title}}</h1>
+                    
+                    <p>Click on the different sections of the page to find all the information you need.</p>
+                    <ol>
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/warehouses">Warehouses</a></li>
+                        <li><a href="/business">Business</a></li>
+                        <li><a href="/orders">Orders</a></li>
+                        <li><a href="/invoices">invoices</a></li>
+                    </ol>
+                </div>
+
+                {% block container %}
+                
+                
+                {% endblock container%}
+    {% endblock page%}

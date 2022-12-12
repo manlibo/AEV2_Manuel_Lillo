@@ -8,10 +8,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * @ORM\Entity(RepositoryClass=BusinessRepository::class)
+ * @ORM\Entity(repositoryClass=BusinessRepository::class)
  * @ORM\Table(name="empresas")
  */
-class BusinessEntity {
+class BusinessEntity
+{
 
     /**
     * @ORM\Id

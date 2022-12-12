@@ -29,12 +29,12 @@ class OrderDetailEntity{
     private int $codigo_producto;
 
     /**
-     * @ORM\Column(name="cantidad", type="decimal", precision=6, scale=2)
+     * @ORM\Column(name="cantidad", type="decimal", precision=2, scale=6)
      */
     private float $cantidad;
 
     /**
-     * @ORM\Column(name="precio", type="decimal", precision=6, scale=2)
+     * @ORM\Column(name="precio", type="decimal", precision=6, scale=6)
      */
     private float $precio;
 

@@ -1,0 +1,126 @@
+{% extends "main.html.twig" %}
+
+{% block sidebar %}{% endblock sidebar%}
+{% block page %}
+	{% block container %}
+
+		{% if orders  == true %}
+			<h2 class="tituloListas">{{title_head}}</h2>
+			<table>
+				<tr class="negrita">
+					<td>ID</td>
+					<td>Type</td>
+					<td>Date</td>
+					<td>Observation</td>
+					<td>Empresa</td>
+					<td>Invoice</td>
+				</tr>
+				{% for row in orders %}
+					<tr>
+						<td>
+							<a href="/orderDetail/{{row.getId()}}">{{row.getId()}}</a>
+						</td>
+						<td>{{row.getTipo()|replace({'C': "Cliente", 'P': "Proveedor"})}}
+						</td>
+						<td>{{row.getFecha()|date("d/M/Y")}}</td>
+						<td>{{row.getObservacion()}}</td>
+						<td>{{row.getEmpresa.getNombre}}</td>
+						<td>
+							<a href="/invoices">Invoices</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+			<div class="divHome">
+				<a class="enlaceHome" href="/">Home</a>
+			</div>
+
+		{% elseif detail == true %}
+			<h2 class="tituloListas">{{title_head}}</h2>
+			{% if pedido == true %}
+
+				<table>
+					<tr class="negrita">
+						<td>ID</td>
+						<td>Type</td>
+						<td>Date</td>
+						<td>Observation</td>
+						<td>Empresa</td>
+						<td>Invoice</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="/orderDetail/{{pedido.getId()}}">{{pedido.getId()}}</a>
+						</td>
+						<td>{{pedido.getTipo()|replace({'C': "Cliente", 'P': "Proveedor"})}}
+						</td>
+						<td>{{oedido.getFecha()|date("d/M/Y")}}</td>
+						<td>{{pedido.getObservacion()}}</td>
+						<td>{{pedido.getEmpresa.getNombre}}</td>
+						<td>
+							<a href="/invoices">Invoices</a>
+						</td>
+					</tr>
+				</table>
+			{% endif %}
+
+            <h2 class="tituloListas">{{title_detail}}</h2>
+			<table>
+				<tr class="negrita">
+					<td>ID Linea</td>
+					<td>ID Pedido</td>
+					<td>Product Code</td>
+					<td>Amoun</td>
+					<td>Price</td>
+				</tr>
+				{% for row in detail %}
+					<tr>
+						<td>{{row.getIdLinea()}}</td>
+						<td>{{row.getIdPedido()}}</td>
+						<td>{{row.getCodigoProducto()}}</td>
+						<td>{{row.getCantidad()}}</td>
+						<td>{{row.getPrecio()}}</td>
+					</tr>
+				{% endfor %}
+			</table>
+			<div class="divHome">
+				<a class="enlaceHome" href="/">Home</a>
+			</div>
+        {% elseif invoices == true %}
+
+            <h2 class="tituloListas">{{title_head}}</h2>
+			<table>
+				<tr class="negrita">
+					<td>ID Factura</td>
+					<td>Fecha</td>
+					<td>ID Pedido</td>
+					<td>Tipo</td>
+					<td>Valor</td>
+				</tr>
+				{% for row in invoices %}
+					<tr>
+						<td>
+							<a href="/invoice/{{row.getIdFactura()}}">{{row.getIdFactura()}}</a>
+						</td>
+						<td>{{row.getFecha()|date("d/M/Y")}}
+						</td>
+						<td>{{row.getIdPedido()}}</td>
+						<td>{{row.getTipo()}}</td>
+						<td>{{row.getPrecioUnidad}}</td>
+					</tr>
+				{% endfor %}
+			</table>
+			<div class="divHome">
+				<a class="enlaceHome" href="/">Home</a>
+			</div>
+                
+		{% else %}
+			O results
+			<div class="divHome">
+				<a class="enlaceHome" href="/">Home</a>
+			</div>
+		{% endif %}
+
+	{% endblock container%}
+
+{% endblock page%}

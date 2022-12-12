@@ -16,9 +16,9 @@ class WarehousesController extends AbstractController
         $warehousesRepository = $entityManager->getRepository(WarehousesEntity::class);
         $warehouses = $warehousesRepository->findAll();
         $this->render(
-            "warehouses.html.twig",
-            ['title_head'=>'PRODUCTS',
-            'results'=>$warehouses]
+            "products.html.twig",
+            ['title_head'=>'WAREHOUSES',
+            'warehouses'=>$warehouses]
         );
     }
 }

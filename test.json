@@ -16,25 +16,18 @@
         "controller":"BusinessController",
         "action":"listBusiness"
     },
-    "/update":{
-        "controller":"BusinessController",
-        "action":"formEditBusiness"
-    },
-    "/updateBusiness":{
+    "/busines/update":{
         "controller":"BusinessController",
         "action":"updateBusiness"
     },
-    
-    "/form":{
+    "/busines/edit":{
         "controller":"BusinessController",
-        "action":"formInsertBusiness"
+        "action":"formEditBusiness"
     },
-    
     "/insert":{
         "controller":"BusinessController",
         "action":"insertBusiness"
     },
-
     "/delete":{
         "controller": "BusinessController",
         "action":"deleteBusiness"

@@ -1,29 +1,95 @@
 {% extends "main.html.twig" %}
 
+{% block sidebar %}
+     
+    {% endblock sidebar%}
+{% block page %}
 {% block container %}
 
-    {% if results is null %}
-        0 results
-        <a href="/">Home</a>
-    {% else %}
-        <table>
-            <th>
+    {% if products  == true %}
+    <h2 class="tituloListas">{{title_head}}</h2>
+    <table>
+            <tr class="negrita">
                 <td>Description</td>
                 <td>Warehouse</td>
                 <td>Unit</td>
                 <td>Rating</td>
                 <td>Price/Unit</td>
-            </th>
-            {% for row in results %}
+            </tr>
+            {% for row in products %}
                 <tr>
                     <td>{{row.getDescripcion()}}</td>
-                    <td>{{row.getAlmacen()}}</td>
+                    <td>{{row.getAlmaProducto.getDescripcion}}</td>
                     <td>{{row.getUnidad()}}</td>
-                    <td>{{row.getClasificacion()}}</td>
+                    <td>
+                    {{row.getClasificacion()|replace({'C': "Caduca", 'P': "Permanente"})}}  
+                    </td>
                     <td>{{row.getPrecioUnidad()}}</td>
                 </tr>
             {% endfor %}
         </table>
+        <div class="divHome">
+            <a class="enlaceHome" href="/">Home</a>
+        </div>
+        
+    {% elseif warehouses == true %}
+    <h2 class="tituloListas">{{title_head}}</h2>
+        <table>
+            <tr class="negrita">
+                <td>Name</td>
+                <td>Location</td>
+                <td>Description</td>
+            </tr>
+            {% for row in warehouses %}
+                <tr>
+                    <td>{{row.getNombre()}}</td>
+                    <td>{{row.getLocalizacion()}}</td>
+                    <td>{{row.getDescripcion()}}</td>
+                    
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="divHome">
+            <a class="enlaceHome" href="/">Home</a>
+        </div>
+
+        {% elseif business == true %}
+        <h2 class="tituloListas">{{title_head}}</h2>
+        <div class="divBusiness">
+            <a class="enlaceBusiness" href="/form">Insert New Business</a>
+        </div>
+            <table>
+            <tr class="negrita">
+                <td>ID</td>
+                <td>Nombre</td>
+                <td>CIF</td>
+                <td>Tipo</td>
+                <td>Update</td>
+                <td>Delete</td>
+            </tr>
+            {% for row in business %}
+                <tr>
+                    <td>{{row.getId()}}</td>
+                    <td>{{row.getNombre()}}</td>
+                    <td>{{row.getCIF()}}</td>
+                    <td>
+                    {{row.getTipo()|replace({'0': "Proveedor", '1': "Cliente"})}}                    
+                    </td>
+                    <td><a href="/update/{{row.getId()}}">Update</a></td>
+                    <td><a href="/delete/{{row.getId()}}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="divHome">
+            <a class="enlaceHome" href="/">Home</a>
+        </div>
+        {% else %}
+            O results
+            <div class="divHome">
+            <a class="enlaceHome" href="/">Home</a>
+        </div>
     {% endif %}
 
 {% endblock container%}
+
+{% endblock page%}
