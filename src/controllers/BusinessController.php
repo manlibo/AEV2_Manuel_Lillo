@@ -43,7 +43,7 @@ class BusinessController extends AbstractController
         // Recupero la entidad por su id
         $business = $businessRepository->find($id);
         if ($business) {
-            echo("Entidad encontrada");
+            //echo("Entidad encontrada");
             //var_dump($business);
             $this->render(
                 "business.html.twig",

@@ -56,5 +56,9 @@
     "/invoice":{
         "controller":"InvoicesController",
         "action":"showInvoice"
+    },
+    "/error":{
+        "controller":"ErrorController",
+        "action":"showError"
     }
 }

@@ -4,7 +4,7 @@ namespace App\Core;
 
 use App\Core\Interfaces\IRequest;
 use App\Core\Interfaces\IRoute;
-//use App\Entity\Error;
+use App\Entity\ErrorEntity;
 
 class Dispatcher
 {
@@ -34,19 +34,23 @@ class Dispatcher
             //lanzamos la acción que vamos a realizar del controlador pertinenTe
             $controller->$action(...$this->currentRequest->getParams());
         } else {
-            echo "La ruta no esta definida.";
+            $rawRoute = $_SERVER["REQUEST_URI"];
+            //var_dump($this->routeList);
+            echo ("La ruta"  . $rawRoute . " no esta definida.");
+
         
         }
         
         /* else {
+            //$rawRoute = $_SERVER["REQUEST_URI"];
             //En el caso que la ruta que solicitamos no este definida en la lista de rutas de la aplicación
-            $error = new Error();
-            $error->render(
+             $error = new ErrorEntity();
+            $error = render(
                 "error.html.twig",
                 [
-                "title" => "La petición no se ha procesado correctamente. Vuelve a realizar una petición",
+                "title_head" => "La petición no se ha procesado correctamente. Vuelve a realizar una petición"
             ]
-            );
+            ); 
         } */
     
     }

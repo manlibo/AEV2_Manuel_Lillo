@@ -1,0 +1,36 @@
+{% extends "main.html.twig" %}
+
+{% block sidebar %}
+     
+    {% endblock sidebar%}
+{% block page %}
+{% block container %}
+
+
+    <h2 class="tituloListas">{{title_head}}</h2>
+    <table>
+            <tr class="negrita">
+                <td>Description</td>
+                <td>Warehouse</td>
+                <td>Unit</td>
+                <td>Rating</td>
+                <td>Price/Unit</td>
+            </tr>
+            {% for row in products %}
+                <tr>
+                    <td>{{row.getDescripcion()}}</td>
+                    <td>{{row.getAlmaProducto.getDescripcion}}</td>
+                    <td>{{row.getUnidad()}}</td>
+                    <td>
+                    {{row.getClasificacion()|replace({'C': "Caduca", 'P': "Permanente"})}}  
+                    </td>
+                    <td>{{row.getPrecioUnidad()}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="divHome">
+            <a class="enlaceHome" href="/">Home</a>
+        </div>
+
+
+        

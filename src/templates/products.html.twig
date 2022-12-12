@@ -54,6 +54,16 @@
         </div>
 
         {% elseif business == true %}
+        <script>
+            function confirmacion() {
+                let respuesta = confirm("Delete?");
+                if(respuesta == true){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
         <h2 class="tituloListas">{{title_head}}</h2>
         <div class="divBusiness">
             <a class="enlaceBusiness" href="/form">Insert New Business</a>
@@ -76,7 +86,9 @@
                     {{row.getTipo()|replace({'0': "Proveedor", '1': "Cliente"})}}                    
                     </td>
                     <td><a href="/update/{{row.getId()}}">Update</a></td>
-                    <td><a href="/delete/{{row.getId()}}">Delete</a></td>
+                    {# Boton confirmación antes de borrar #}
+                    {# <td><a href="/delete/{{row.getId()}}" onclick="return confimacion()" >Delete</a></td> #}
+                    <td><a href="/delete/{{row.getId()}}" onclick="return confimacion()" >Delete</a></td>
                 </tr>
             {% endfor %}
         </table>
@@ -91,5 +103,8 @@
     {% endif %}
 
 {% endblock container%}
+    
+
+
 
 {% endblock page%}
