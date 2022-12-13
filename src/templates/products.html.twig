@@ -16,8 +16,8 @@
 				</tr>
 				{% for row in products %}
 					<tr>
-						<td>{{row.getDescripcion()}}</td>
-						<td>{{row.getAlmaProducto.getDescripcion}}</td>
+						<td>{{row.getDescripcion()|capitalize}}</td>
+						<td>{{row.getAlmaProducto.getDescripcion|capitalize}}</td>
 						<td>{{row.getUnidad()}}</td>
 						<td>
 							{{row.getClasificacion()|replace({'C': "Caduca", 'P': "Permanente"})}}
@@ -40,9 +40,9 @@
 				</tr>
 				{% for row in warehouses %}
 					<tr>
-						<td>{{row.getNombre()}}</td>
+						<td>{{row.getNombre()|capitalize}}</td>
 						<td>{{row.getLocalizacion()}}</td>
-						<td>{{row.getDescripcion()}}</td>
+						<td>{{row.getDescripcion()|capitalize}}</td>
 
 					</tr>
 				{% endfor %}
@@ -78,7 +78,7 @@ return false;
 				{% for row in business %}
 					<tr>
 						<td>{{row.getId()}}</td>
-						<td>{{row.getNombre()}}</td>
+						<td>{{row.getNombre()|capitalize}}</td>
 						<td>{{row.getCIF()}}</td>
 						<td>
 							{{row.getTipo()|replace({'0': "Proveedor", '1': "Cliente"})}}
