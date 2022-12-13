@@ -1,0 +1,10 @@
+# AEV2_Manuel_Lillo
+Para iniciar la aplicación tendremos que entrar en la carpeta public desde la terminal e introducir el siguiente comando:
+
+php -S localhost:8000
+
+Después iremos al navegador y escribiremos la siguiente dirección url:
+
+localhost:8000
+
+Y ya podemos empezar a navegar por la aplicación.
