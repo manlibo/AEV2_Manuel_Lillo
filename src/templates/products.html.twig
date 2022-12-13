@@ -1,110 +1,110 @@
 {% extends "main.html.twig" %}
 
-{% block sidebar %}
-     
-    {% endblock sidebar%}
+{% block sidebar %}{% endblock sidebar%}
 {% block page %}
-{% block container %}
+	{% block container %}
 
-    {% if products  == true %}
-    <h2 class="tituloListas">{{title_head}}</h2>
-    <table>
-            <tr class="negrita">
-                <td>Description</td>
-                <td>Warehouse</td>
-                <td>Unit</td>
-                <td>Rating</td>
-                <td>Price/Unit</td>
-            </tr>
-            {% for row in products %}
-                <tr>
-                    <td>{{row.getDescripcion()}}</td>
-                    <td>{{row.getAlmaProducto.getDescripcion}}</td>
-                    <td>{{row.getUnidad()}}</td>
-                    <td>
-                    {{row.getClasificacion()|replace({'C': "Caduca", 'P': "Permanente"})}}  
-                    </td>
-                    <td>{{row.getPrecioUnidad()}}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <div class="divHome">
-            <a class="enlaceHome" href="/">Home</a>
-        </div>
-        
-    {% elseif warehouses == true %}
-    <h2 class="tituloListas">{{title_head}}</h2>
-        <table>
-            <tr class="negrita">
-                <td>Name</td>
-                <td>Location</td>
-                <td>Description</td>
-            </tr>
-            {% for row in warehouses %}
-                <tr>
-                    <td>{{row.getNombre()}}</td>
-                    <td>{{row.getLocalizacion()}}</td>
-                    <td>{{row.getDescripcion()}}</td>
-                    
-                </tr>
-            {% endfor %}
-        </table>
-        <div class="divHome">
-            <a class="enlaceHome" href="/">Home</a>
-        </div>
+		{% if products  == true %}
+			<h2 class="tituloListas">{{title_head}}</h2>
+			<table>
+				<tr class="negrita">
+					<td>Description</td>
+					<td>Warehouse</td>
+					<td>Unit</td>
+					<td>Rating</td>
+					<td>Price/Unit</td>
+				</tr>
+				{% for row in products %}
+					<tr>
+						<td>{{row.getDescripcion()}}</td>
+						<td>{{row.getAlmaProducto.getDescripcion}}</td>
+						<td>{{row.getUnidad()}}</td>
+						<td>
+							{{row.getClasificacion()|replace({'C': "Caduca", 'P': "Permanente"})}}
+						</td>
+						<td>{{row.getPrecioUnidad()| number_format(2, ',', '.')}}</td>
+					</tr>
+				{% endfor %}
+			</table>
+			<div class="divHome">
+				<a class="enlaceHome" href="/">Home</a>
+			</div>
 
-        {% elseif business == true %}
-        <script>
-            function confirmacion() {
-                let respuesta = confirm("Delete?");
-                if(respuesta == true){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        </script>
-        <h2 class="tituloListas">{{title_head}}</h2>
-        <div class="divBusiness">
-            <a class="enlaceBusiness" href="/form">Insert New Business</a>
-        </div>
-            <table>
-            <tr class="negrita">
-                <td>ID</td>
-                <td>Nombre</td>
-                <td>CIF</td>
-                <td>Tipo</td>
-                <td>Update</td>
-                <td>Delete</td>
-            </tr>
-            {% for row in business %}
-                <tr>
-                    <td>{{row.getId()}}</td>
-                    <td>{{row.getNombre()}}</td>
-                    <td>{{row.getCIF()}}</td>
-                    <td>
-                    {{row.getTipo()|replace({'0': "Proveedor", '1': "Cliente"})}}                    
-                    </td>
-                    <td><a href="/update/{{row.getId()}}">Update</a></td>
-                    {# Boton confirmación antes de borrar #}
-                    {# <td><a href="/delete/{{row.getId()}}" onclick="return confimacion()" >Delete</a></td> #}
-                    <td><a href="/delete/{{row.getId()}}" onclick="return confimacion()" >Delete</a></td>
-                </tr>
-            {% endfor %}
-        </table>
-        <div class="divHome">
-            <a class="enlaceHome" href="/">Home</a>
-        </div>
-        {% else %}
-            O results
-            <div class="divHome">
-            <a class="enlaceHome" href="/">Home</a>
-        </div>
-    {% endif %}
+		{% elseif warehouses == true %}
+			<h2 class="tituloListas">{{title_head}}</h2>
+			<table>
+				<tr class="negrita">
+					<td>Name</td>
+					<td>Location</td>
+					<td>Description</td>
+				</tr>
+				{% for row in warehouses %}
+					<tr>
+						<td>{{row.getNombre()}}</td>
+						<td>{{row.getLocalizacion()}}</td>
+						<td>{{row.getDescripcion()}}</td>
 
-{% endblock container%}
-    
+					</tr>
+				{% endfor %}
+			</table>
+			<div class="divHome">
+				<a class="enlaceHome" href="/">Home</a>
+			</div>
 
+		{% elseif business == true %}
+			<script>
+				function confirmacion() {
+let respuesta = confirm("Delete?");
+if (respuesta == true) {
+return true;
+} else {
+return false;
+}
+}
+			</script>
+			<h2 class="tituloListas">{{title_head}}</h2>
+			<div class="divBusiness">
+				<a class="enlaceBusiness" href="/form">Insert New Business</a>
+			</div>
+			<table>
+				<tr class="negrita">
+					<td>ID</td>
+					<td>Nombre</td>
+					<td>CIF</td>
+					<td>Tipo</td>
+					<td>Update</td>
+					<td>Delete</td>
+				</tr>
+				{% for row in business %}
+					<tr>
+						<td>{{row.getId()}}</td>
+						<td>{{row.getNombre()}}</td>
+						<td>{{row.getCIF()}}</td>
+						<td>
+							{{row.getTipo()|replace({'0': "Proveedor", '1': "Cliente"})}}
+						</td>
+						<td>
+							<a href="/update/{{row.getId()}}">Update</a>
+						</td>
+						{# Boton confirmación antes de borrar #}
+						{# <td><a href="/delete/{{row.getId()}}" onclick="return confimacion()" >Delete</a></td> #}
+						<td>
+							<a href="/delete/{{row.getId()}}" onclick="return confimacion()">Delete</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+			<div class="divHome">
+				<a class="enlaceHome" href="/">Home</a>
+			</div>
+		{% else %}
+			O results
+			<div class="divHome">
+				<a class="enlaceHome" href="/">Home</a>
+			</div>
+		{% endif %}
+
+	{% endblock container%}
 
 
 {% endblock page%}

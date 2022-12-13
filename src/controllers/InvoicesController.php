@@ -24,7 +24,8 @@ class InvoicesController extends AbstractController
     }
 
     //Clase para mostrar facturas asociadas al pedido
-    public function showInvoice($id){
+    public function showInvoice($id)
+    {
         $entityManager = (new EntityManager())->getEntityManager();
         $orderRepository = $entityManager->getRepository(OrdersEntity::class);
         $order = $orderRepository->find($id);
@@ -38,6 +39,5 @@ class InvoicesController extends AbstractController
             'order_inv'=>$order,
             'invoices_ord'=>$invoices]
         );
-
     }
 }

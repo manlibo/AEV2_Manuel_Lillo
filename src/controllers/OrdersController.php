@@ -9,7 +9,7 @@ use App\Core\AbstractController;
 class OrdersController extends AbstractController
 {
 
-    //Clase para listar todos Los datos de la tabla productos.
+    //Clase para listar todos Los datos de la tabla pedidos.
     public function listOrders()
     {
         $entityManager = (new EntityManager())->getEntityManager();

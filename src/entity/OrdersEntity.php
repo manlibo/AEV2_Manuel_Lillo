@@ -12,7 +12,8 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity(repositoryClass=OrdersRepository::class)
  * @ORM\Table(name="pedidos")
  */
-class OrdersEntity {
+class OrdersEntity
+{
 
      /**
     * @ORM\Id
@@ -64,7 +65,6 @@ class OrdersEntity {
     {
         $this->facturas = new ArrayCollection();
         $this->lineasPedidos = new ArrayCollection();
-
     }
 
     /**

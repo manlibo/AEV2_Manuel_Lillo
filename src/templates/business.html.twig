@@ -1,41 +1,36 @@
 {% extends "main.html.twig" %}
 
 
-
-
-
 {% block page %}
 	{% block container %}
-     {# EMPIEZA EL FORMULARIO #}
-	<div id="page">
+		{# EMPIEZA EL FORMULARIO #}
+		<div id="page">
 			<div id="content">
-		<div id="form_container">
-			<form method="post" action="/updateBusiness/{{business.getID()}}">
-				<div>
-					<h2>Business</h2>
+				<div id="form_container">
+					<form method="post" action="/updateBusiness/{{business.getID()}}">
+						<div>
+							<h2>Business</h2>
+						</div>
+
+
+						<label for="nombre">Name</label>
+						<div>
+							<input name="nombre" type="text" value="{{business.getNombre()}}"/>
+						</div>
+
+						<label for="CIF">CIF</label>
+						<div>
+							<input name="CIF" type="text" value="{{business.getCIF()}}"/>
+						</div>
+
+						<label for="type">Type</label>
+						<div>
+							<input name="type" type="text" value="{{business.getTipo()}}"/>
+						</div>
+
+						<input type="submit" name="submit" value="Insert"/>
+					</form>
 				</div>
-				
-
-				<label for="nombre">Name</label>
-				<div>
-					<input name="nombre" type="text" value="{{business.getNombre()}}"/>
-				</div>
-
-				<label for="CIF">CIF</label>
-				<div>
-					<input name="CIF" type="text" value="{{business.getCIF()}}"/>
-				</div>
-
-				<label for="type">Type</label>
-				<div>
-					<input name="type" type="text" value="{{business.getTipo()}}"/>
-				</div>
-
-				<input type="submit" name="submit" value="Insert"/>
-		</form>
-	</div>
-    {# TERMINA EL FORMULARIO #}
-	{% endblock container%}
-{% endblock page%}
-
-
+				{# TERMINA EL FORMULARIO #}
+			{% endblock container%}
+		{% endblock page%}

@@ -34,7 +34,7 @@
 			<div class="divHome">
 				<a class="enlaceHome" href="/">Home</a>
 			</div>
-		{# Mostramos la página de las líneas asociadas a un pedido #}
+			{# Mostramos la página de las líneas asociadas a un pedido #}
 		{% elseif detail == true %}
 			<h2 class="tituloListas">{{title_head}}</h2>
 			{% if pedido == true %}
@@ -64,7 +64,7 @@
 				</table>
 			{% endif %}
 
-            <h2 class="tituloListas">{{title_detail}}</h2>
+			<h2 class="tituloListas">{{title_detail}}</h2>
 			<table>
 				<tr class="negrita">
 					<td>ID Linea</td>
@@ -79,7 +79,7 @@
 						<td>{{row.getIdPedido()}}</td>
 						<td>{{row.getProductos().getDescripcion()}}</td>
 						<td>{{row.getCantidad()}}</td>
-						<td>{{row.getPrecio()}}</td>
+						<td>{{row.getPrecio()| number_format(2, ',', '.')}}</td>
 					</tr>
 				{% endfor %}
 			</table>
@@ -87,10 +87,10 @@
 				<a class="enlaceHome" href="/">Home</a>
 			</div>
 
-		{# Mostramos la lista de todas las facturas #}
-        {% elseif invoices == true %}
+			{# Mostramos la lista de todas las facturas #}
+		{% elseif invoices == true %}
 
-            <h2 class="tituloListas">{{title_head}}</h2>
+			<h2 class="tituloListas">{{title_head}}</h2>
 			<table>
 				<tr class="negrita">
 					<td>ID Factura</td>
@@ -108,7 +108,7 @@
 						</td>
 						<td>{{row.getIdPedido()}}</td>
 						<td>{{row.getTipo()}}</td>
-						<td>{{row.getPrecioUnidad}}</td>
+						<td>{{row.getPrecioUnidad| number_format(2, ',', '.')}}</td>
 					</tr>
 				{% endfor %}
 			</table>
@@ -118,37 +118,37 @@
 
 
 			{# Mostramos la ruta invoice/? para mostar un pedido con sus facturas #}
-			{% elseif invoices_ord == true %}
+		{% elseif invoices_ord == true %}
 
 			<h2 class="tituloListas">{{title_head}}</h2>
-				{% if order_inv == true %}
+			{% if order_inv == true %}
 
-					<table>
-						<tr class="negrita">
-							<td>ID</td>
-							<td>Type</td>
-							<td>Date</td>
-							<td>Observation</td>
-							<td>Empresa</td>
-							<td>Invoice</td>
-						</tr>
-						<tr>
-							<td>
-								<a href="/orderDetail/{{invoices_ord.getIdFactura()}}">{{order_inv.getId()}}</a>
-							</td>
-							<td>{{order_inv.getTipo()|replace({'C': "Cliente", 'P': "Proveedor"})}}
-							</td>
-							<td>{{order_inv.getFecha()|date("d/M/Y")}}</td>
-							<td>{{order_inv.getObservacion()}}</td>
-							<td>{{order_inv.getEmpresa.getNombre}}</td>
-							<td>
-								<a href="/invoices">Invoices</a>
-							</td>
-						</tr>
-					</table>
-				{% endif %}
+				<table>
+					<tr class="negrita">
+						<td>ID</td>
+						<td>Type</td>
+						<td>Date</td>
+						<td>Observation</td>
+						<td>Empresa</td>
+						<td>Invoice</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="/orderDetail/{{invoices_ord.getIdFactura()}}">{{order_inv.getId()}}</a>
+						</td>
+						<td>{{order_inv.getTipo()|replace({'C': "Cliente", 'P': "Proveedor"})}}
+						</td>
+						<td>{{order_inv.getFecha()|date("d/M/Y")}}</td>
+						<td>{{order_inv.getObservacion()}}</td>
+						<td>{{order_inv.getEmpresa.getNombre}}</td>
+						<td>
+							<a href="/invoices">Invoices</a>
+						</td>
+					</tr>
+				</table>
+			{% endif %}
 
-            <h2 class="tituloListas">{{title_invoice}}</h2>
+			<h2 class="tituloListas">{{title_invoice}}</h2>
 			<table>
 				<tr class="negrita">
 					<td>ID Factura</td>
@@ -157,7 +157,7 @@
 					<td>Tipo</td>
 					<td>Valor</td>
 				</tr>
-				 {% for row in invoices_ord %} 
+				{% for row in invoices_ord %}
 					<tr>
 						<td>
 							<a href="/invoice/{{row.getIdFactura()}}">{{row.getIdFactura()}}</a>
@@ -166,14 +166,14 @@
 						</td>
 						<td>{{row.getIdPedido()}}</td>
 						<td>{{row.getTipo()|replace({'FC': "Factura de Compra", 'FV': "Factura de Venta"})}}</td>
-						<td>{{row.getPrecioUnidad}}</td>
+						<td>{{row.getPrecioUnidad| number_format(2, ',', '.')}}</td>
 					</tr>
-				 {% endfor %} 
+				{% endfor %}
 			</table>
 			<div class="divHome">
 				<a class="enlaceHome" href="/">Home</a>
 			</div>
-                
+
 		{% else %}
 			O results
 			<div class="divHome">

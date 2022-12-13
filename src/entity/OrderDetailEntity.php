@@ -9,7 +9,8 @@ use App\Repository\OrderDetailRepository;
  * @ORM\Entity(repositoryClass=OrderDetailRepository::class)
  * @ORM\Table(name="lineaspedidos")
  */
-class OrderDetailEntity{
+class OrderDetailEntity
+{
 
     /**
     * @ORM\Id

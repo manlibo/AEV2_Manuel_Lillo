@@ -60,7 +60,6 @@ class ProductsEntity
     {
         $this->detalles = new ArrayCollection();
         $this->stock = new ArrayCollection();
-
     }
 
     /**

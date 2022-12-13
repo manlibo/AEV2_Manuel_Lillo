@@ -33,26 +33,12 @@ class Dispatcher
             $action = $this->routeList[$this->currentRequest->getRoute()]["action"];
             //lanzamos la acción que vamos a realizar del controlador pertinenTe
             $controller->$action(...$this->currentRequest->getParams());
+
+        //Mostramos la ruta erronea y añadimos un enlace a HOME
         } else {
             $rawRoute = $_SERVER["REQUEST_URI"];
-            //var_dump($this->routeList);
-            echo ("La ruta"  . $rawRoute . " no esta definida.");
-
-        
+            echo("La ruta"  . $rawRoute . " no esta definida.<br>");
+            echo('<a href="http://localhost:8000/business">HOME</a>');
         }
-        
-        /* else {
-            //$rawRoute = $_SERVER["REQUEST_URI"];
-            //En el caso que la ruta que solicitamos no este definida en la lista de rutas de la aplicación
-             $error = new ErrorEntity();
-            $error = render(
-                "error.html.twig",
-                [
-                "title_head" => "La petición no se ha procesado correctamente. Vuelve a realizar una petición"
-            ]
-            ); 
-        } */
-    
     }
-
 }

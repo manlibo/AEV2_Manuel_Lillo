@@ -8,9 +8,10 @@ use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=InvoicesRepository::class)
- * @ORM\Table(name="facturas") 
- */ 
-class InvoicesEntity{
+ * @ORM\Table(name="facturas")
+ */
+class InvoicesEntity
+{
     
     /**
     * @ORM\Id

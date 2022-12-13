@@ -9,7 +9,7 @@ use App\Core\AbstractController;
 class WarehousesController extends AbstractController
 {
 
-    //Clase para listar todos Los datos de la tabla productos.
+    //Clase para listar todos Los datos de la tabla almacenes.
     public function listWarehouses()
     {
         $entityManager = (new EntityManager())->getEntityManager();

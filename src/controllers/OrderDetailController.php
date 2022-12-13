@@ -10,12 +10,10 @@ use App\Core\AbstractController;
 class OrderDetailController extends AbstractController
 {
 
-    //Clase para listar todos Los datos de la tabla productos.
+    //Clase para mostrar las lineaspedidos de cada pedido
     public function listDetail(int $id)
     {
         $entityManager = (new EntityManager())->getEntityManager();
-        //$detailRepository = $entityManager->getRepository(OrderDetailEntity::class);
-        //$detail = $detailRepository->findBy([$id]);
         $detailRepository = $entityManager->getRepository(OrderDetailEntity::class);
         $detail = $detailRepository->findBy(['id_pedido'=>$id]);
         $pedidoRepository = $entityManager->getRepository(OrdersEntity::class);
@@ -30,5 +28,3 @@ class OrderDetailController extends AbstractController
         );
     }
 }
-
-

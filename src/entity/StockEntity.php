@@ -10,7 +10,8 @@ use DateTime;
  * @ORM\Entity(repositoryClass=StockRepository::class)
  * @ORM\Table(name="stock")
  */
-class StockEntity {
+class StockEntity
+{
     /**
     * @ORM\Id
     * @ORM\GeneratedValue
